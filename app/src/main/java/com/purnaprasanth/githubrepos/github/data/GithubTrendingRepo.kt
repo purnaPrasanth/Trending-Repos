@@ -26,9 +26,9 @@ data class GithubTrendingRepo(
     @SerializedName("url")
     val url: String,
     @SerializedName("language")
-    val language: String,
+    val language: String?,
     @SerializedName("languageColor")
-    val languageColor: String
+    val languageColor: String?
 )
 
 data class BuiltBy(

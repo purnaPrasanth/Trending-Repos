@@ -26,6 +26,6 @@ data class TrendingRepo(
     val description: String,
     val stars: Int,
     val fork: Int,
-    val language: String,
-    val languageColor: String
+    val language: String?,
+    val languageColor: String?
 )

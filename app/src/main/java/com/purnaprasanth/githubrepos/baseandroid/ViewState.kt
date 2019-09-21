@@ -31,6 +31,6 @@ data class ErrorViewState<T>(val exception: Exception) : ViewState<T>() {
 /**
  * Loading implementation for state of a View [ViewState]
  */
-data class LoadingViewState<T>(val data: Nothing) : ViewState<T>() {
+data class LoadingViewState<T>(val data: Nothing? = null) : ViewState<T>() {
     override fun get(): Nothing? = null
 }
