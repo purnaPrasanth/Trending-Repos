@@ -1,8 +1,10 @@
 package com.purnaprasanth.githubrepos.di
 
+import coil.ImageLoader
 import com.purnaprasanth.githubrepos.annotations.GitHub
 import com.purnaprasanth.githubrepos.data.datasources.GithubTrendingDataSource
 import com.purnaprasanth.githubrepos.data.datasources.ITrendingRepoDataSource
+import com.purnaprasanth.githubrepos.github.CoilGithubDelegate
 import com.purnaprasanth.githubrepos.github.IGithubServices
 import com.purnaprasanth.githubrepos.github.OkhttpGithubServices
 import dagger.Binds
@@ -21,4 +23,8 @@ abstract class NetworkModuleBinds {
     @Binds
     @GitHub
     abstract fun bindGitHubDataSource(gitHubTrendingRepoDataSource: GithubTrendingDataSource): ITrendingRepoDataSource
+
+    @Binds
+    @GitHub
+    abstract fun bindGitHubCoil(gitHubTrendingRepoDataSource: CoilGithubDelegate): ImageLoader
 }

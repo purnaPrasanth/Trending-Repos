@@ -18,10 +18,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class OkhttpGithubServices(
     okhttp: OkHttpClient,
-    gson: Gson
+    gson: Gson,
+    forceCacheInterceptor: ForceCacheInterceptor
 ) : IGithubServices {
 
-    private val githubOkHttpClient: OkHttpClient = okhttp.newBuilder().build()
+    private val githubOkHttpClient: OkHttpClient = okhttp.newBuilder()
+        .addInterceptor(forceCacheInterceptor)
+        .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("https://github-trending-api.now.sh/")

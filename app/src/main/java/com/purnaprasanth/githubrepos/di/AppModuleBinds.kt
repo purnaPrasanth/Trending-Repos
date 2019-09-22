@@ -2,13 +2,12 @@ package com.purnaprasanth.githubrepos.di
 
 import android.app.Application
 import android.content.Context
-import coil.ImageLoader
 import com.purnaprasanth.githubrepos.GithubTrendingRepoApplication
 import com.purnaprasanth.githubrepos.annotations.App
-import com.purnaprasanth.githubrepos.annotations.GitHub
 import com.purnaprasanth.githubrepos.appinitializers.StethoAppInitializer
 import com.purnaprasanth.githubrepos.baseandroid.AppInitializer
-import com.purnaprasanth.githubrepos.github.CoilGithubDelegate
+import com.purnaprasanth.githubrepos.baseandroid.connectivity.ConnectivityStatus
+import com.purnaprasanth.githubrepos.connectivity.DetectConnectivity
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
@@ -28,8 +27,7 @@ abstract class AppModuleBinds {
     abstract fun bindApplication(application: GithubTrendingRepoApplication): Application
 
     @Binds
-    @GitHub
-    abstract fun bindGithubCoilDelegate(githubCoilGithubDelegate: CoilGithubDelegate): ImageLoader
+    abstract fun bindConnectivityStatus(detectConnectivity: DetectConnectivity): ConnectivityStatus
 
     @Binds
     @IntoSet

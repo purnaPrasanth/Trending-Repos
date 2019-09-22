@@ -2,6 +2,8 @@ package com.purnaprasanth.githubrepos.main
 
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.purnaprasanth.githubrepos.R
 import com.purnaprasanth.githubrepos.baseandroid.BaseActivity
 import com.purnaprasanth.githubrepos.baseandroid.ErrorViewState
@@ -15,19 +17,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     @Inject
     lateinit var trendingRepoViewModel: TrendingRepoViewModel
 
+    @Inject
+    lateinit var trendingRepoRvAdapter: TrendingRepoRvAdapter
+
     override fun initUI() {
+        binding.trendingRepoList.adapter = trendingRepoRvAdapter
+        binding.trendingRepoList.layoutManager = LinearLayoutManager(this)
         trendingRepoViewModel.trendingReposViewState.observe(this, Observer {
             when (it) {
                 is ErrorViewState -> {
-                    Log.d("MainActivity", it.exception.message.orEmpty())
                     it.exception.printStackTrace()
                 }
                 is SuccessViewState -> {
-                    Log.d("MainActivity", it.data.toString())
-                    it.data.toString()
+                    trendingRepoRvAdapter.submitList(it.data)
                 }
                 is LoadingViewState -> {
-                    Log.d("MainActivity", "loading")
                 }
             }
         })

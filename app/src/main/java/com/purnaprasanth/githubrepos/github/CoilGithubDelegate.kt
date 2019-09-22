@@ -5,6 +5,7 @@ import coil.DefaultRequestOptions
 import coil.ImageLoader
 import coil.request.GetRequest
 import coil.request.LoadRequest
+import com.purnaprasanth.githubrepos.base.AppDispatchers
 import okhttp3.OkHttpClient
 
 /**
@@ -17,15 +18,22 @@ import okhttp3.OkHttpClient
 
 class CoilGithubDelegate(
     private val appContext: Context,
-    okHttpClient: OkHttpClient
+    okHttpClient: OkHttpClient,
+    appDispatchers: AppDispatchers,
+    forceCacheInterceptor: ForceCacheInterceptor
 ) : ImageLoader {
 
-    private val githubOkHttp = okHttpClient.newBuilder().build()
+    private val githubOkHttp = okHttpClient.newBuilder()
+        .addInterceptor(forceCacheInterceptor)
+        .build()
 
     private val coilImageLoader: ImageLoader by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-        ImageLoader.invoke(appContext) {
+        ImageLoader(appContext) {
             crossfade(true)
             okHttpClient(githubOkHttp)
+            availableMemoryPercentage(0.4)
+            bitmapPoolPercentage(0.5)
+            dispatcher(appDispatchers.ioDispatcher)
         }
     }
 
