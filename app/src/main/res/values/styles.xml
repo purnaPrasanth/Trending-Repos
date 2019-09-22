@@ -10,11 +10,12 @@
         <item name="android:textAppearanceLarge">@style/AppTheme.Text.Large</item>
         <item name="textAppearanceErrorMessage">@style/AppTheme.Text.ErrorMessage</item>
         <item name="textAppearanceErrorReason">@style/AppTheme.Text.ErrorReason</item>
-        <item name="android:textAppearanceListItemSmall">@style/AppTheme.Text.ListItem.Small</item>
         <item name="android:editTextStyle">@style/AppTheme.EditText</item>
         <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="android:textAppearanceListItemSmall">@style/AppTheme.Text.ListItem.Small</item>
         <item name="android:textAppearanceListItem">@style/AppTheme.Text.ListItem</item>
-        <item name="android:buttonStyle"></item>
+        <item name="textAppearanceListItemSecondary">@style/AppTheme.Text.ListItem.Secondary</item>
+        <item name="android:buttonStyle">@style/AppTheme.Button</item>
         <item name="android:colorBackground">@color/white</item>
         <item name="dividerHorizontal">@color/dividerColor</item>
         <item name="android:listDivider">@color/dividerColor</item>
@@ -77,8 +78,8 @@
     </style>
 
     <style name="AppTheme.ListItem.Avatar" parent="Widget.AppCompat.ImageButton">
-        <item name="android:layout_width">@dimen/d48</item>
-        <item name="android:layout_height">@dimen/d48</item>
+        <item name="android:layout_width">@dimen/list_item_avatar_size</item>
+        <item name="android:layout_height">@dimen/list_item_avatar_size</item>
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
         <item name="android:scaleType">fitXY</item>

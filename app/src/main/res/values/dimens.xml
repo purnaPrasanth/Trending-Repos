@@ -84,6 +84,8 @@
     <dimen name="parent_padding_half">@dimen/d6</dimen>
     <dimen name="parent_padding_quarter">@dimen/d4</dimen>
 
+    <dimen name="list_item_avatar_size">@dimen/d36</dimen>
+
     <dimen name="elevation">@dimen/d2</dimen>
 
 </resources>

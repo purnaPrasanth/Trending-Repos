@@ -3,9 +3,19 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable name="trendingRepo"
+                  type="com.purnaprasanth.githubrepos.data.model.TrendingRepo"/>
+
+        <import type="android.view.View"/>
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/parent"
             android:padding="@dimen/parent_padding"
             android:background="?android:colorBackground"
             android:layout_marginBottom="@dimen/dividerHeight">
@@ -20,7 +30,7 @@
         <TextView android:layout_width="0dp"
                   android:layout_height="wrap_content"
                   android:id="@+id/repo_author"
-                  style="@style/AppTheme.Text.ListItem.Secondary"
+                  style="?textAppearanceListItemSecondary"
                   app:layout_constraintStart_toEndOf="@id/repo_avatar"
                   app:layout_constraintTop_toTopOf="@id/repo_avatar"
                   app:layout_constraintBottom_toTopOf="@id/repo_name"
@@ -30,19 +40,90 @@
                   tools:text="Jake Wharton"
                   android:singleLine="true"
                   android:ellipsize="end"
+                  android:text="@{trendingRepo.author}"
                   android:layout_marginStart="@dimen/parent_padding"/>
 
         <TextView android:layout_width="0dp"
                   android:layout_height="wrap_content"
                   android:id="@+id/repo_name"
-                  style="@style/AppTheme.Text.ListItem"
+                  style="?android:textAppearanceListItem"
                   app:layout_constraintStart_toStartOf="@id/repo_author"
                   app:layout_constraintTop_toBottomOf="@id/repo_author"
                   app:layout_constraintBottom_toBottomOf="@id/repo_avatar"
                   app:layout_constraintEnd_toEndOf="@id/repo_author"
+                  android:text="@{trendingRepo.name}"
                   android:singleLine="true"
                   android:ellipsize="end"
                   tools:text="Retrofit Project"/>
+
+        <androidx.constraintlayout.widget.Barrier
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/content_barrier"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="repo_avatar,repo_name"/>
+
+        <TextView android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/repo_description"
+                  style="?textAppearanceListItemSecondary"
+                  android:text="@{trendingRepo.description}"
+                  android:visibility="@{trendingRepo.description.isEmpty() ? View.GONE : View.VISIBLE, default=gone}"
+                  app:layout_constraintStart_toStartOf="@id/repo_author"
+                  app:layout_constraintTop_toBottomOf="@id/content_barrier"
+                  android:layout_marginTop="@dimen/parent_padding_half"
+                  tools:text="Hello How are you"/>
+
+        <View android:layout_width="0dp"
+              android:layout_height="0dp"
+              android:id="@+id/language_indicator"
+              android:visibility="@{trendingRepo.language != null ? View.VISIBLE : View.GONE, default=gone}"
+              app:layout_constraintStart_toStartOf="@id/repo_author"
+              app:layout_constraintTop_toTopOf="@id/language_tv"
+              app:layout_constraintBottom_toBottomOf="@id/language_tv"
+              app:layout_constraintDimensionRatio="1:1"
+              android:layout_margin="@dimen/parent_padding_quarter"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/language_tv"
+                  style="?textAppearanceListItemSecondary"
+                  app:layout_constraintStart_toEndOf="@id/language_indicator"
+                  app:layout_constraintTop_toBottomOf="@id/repo_description"
+                  android:layout_marginTop="@dimen/parent_padding_half"
+                  android:layout_marginStart="@dimen/parent_padding_quarter"
+                  android:text="@{trendingRepo.language}"
+                  android:visibility="@{trendingRepo.language != null ? View.VISIBLE : View.GONE, default = gone}"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/stars_tv"
+                  style="?textAppearanceListItemSecondary"
+                  android:drawableStart="@drawable/ic_star"
+                  android:drawablePadding="@dimen/parent_padding_quarter"
+                  app:layout_constraintStart_toEndOf="@id/language_tv"
+                  app:layout_constraintTop_toTopOf="@id/language_tv"
+                  android:text='@{trendingRepo.stars + ""}'
+                  app:layout_constraintHorizontal_chainStyle="spread"
+                  app:layout_constraintEnd_toStartOf="@id/forks_tv"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/forks_tv"
+                  style="?textAppearanceListItemSecondary"
+                  android:drawablePadding="@dimen/parent_padding_quarter"
+                  android:drawableStart="@drawable/ic_fork"
+                  app:layout_constraintStart_toEndOf="@id/stars_tv"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  android:text='@{trendingRepo.fork + ""}'
+                  app:layout_constraintTop_toTopOf="@id/stars_tv"/>
+
+        <androidx.constraintlayout.widget.Group
+                android:id="@+id/details_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="repo_description,language_tv,stars_tv,forks_tv"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,10 @@
 package com.purnaprasanth.githubrepos.main
 
 import android.content.Context
+import android.graphics.Color
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import coil.ImageLoader
 import coil.api.load
@@ -28,13 +32,17 @@ class TrendingRepoRvAdapter @Inject constructor(
 
     override fun onBindViewHolder(binding: RepoItemBinding, position: Int) {
         val trendingRepo = getItem(position)
-        binding.repoName.text = trendingRepo.name
-        binding.repoAuthor.text = trendingRepo.author
+        binding.trendingRepo = trendingRepo
         binding.repoAvatar.load(trendingRepo.avatar, githubImageLoader) {
             transformations(CircleCropTransformation())
         }
-    }
 
+        trendingRepo.languageColor?.let { binding.languageIndicator.setBackgroundColor(Color.parseColor(it)) }
+
+        binding.parent.setOnClickListener {
+            binding.detailsGroup.visibility = if (binding.detailsGroup.isVisible) GONE else VISIBLE
+        }
+    }
 }
 
 @Singleton
