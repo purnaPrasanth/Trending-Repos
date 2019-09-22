@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <attr name="textAppearanceErrorMessage" format="reference"/>
+    <attr name="textAppearanceErrorReason" format="reference"/>
+</resources>
