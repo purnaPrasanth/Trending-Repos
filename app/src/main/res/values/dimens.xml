@@ -72,7 +72,7 @@
     <dimen name="f40">40sp</dimen>
     <dimen name="f44">44sp</dimen>
 
-    <dimen name="dividerHeight">@dimen/p2</dimen>
+    <dimen name="dividerHeight">@dimen/p4</dimen>
 
     <dimen name="toolbarHeight">@dimen/d56</dimen>
 
