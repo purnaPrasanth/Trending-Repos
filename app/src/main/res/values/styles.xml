@@ -1,83 +1,98 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textAppearance">@style/AppTheme.Text</item>
-        <item name="android:textAppearanceSmall">@style/AppTheme.Text.Small</item>
-        <item name="android:textAppearanceLarge">@style/AppTheme.Text.Large</item>
-        <item name="textAppearanceErrorMessage">@style/AppTheme.Text.ErrorMessage</item>
-        <item name="textAppearanceErrorReason">@style/AppTheme.Text.ErrorReason</item>
-        <item name="android:editTextStyle">@style/AppTheme.EditText</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:toolbarStyle">@style/AppTheme.Toolbar</item>
+        <item name="android:textAppearance">@style/BaseAppTheme.Text</item>
+        <item name="android:textAppearanceSmall">@style/BaseAppTheme.Text.Small</item>
+        <item name="android:textAppearanceLarge">@style/BaseAppTheme.Text.Large</item>
+        <item name="textAppearanceErrorMessage">@style/BaseAppTheme.Text.ErrorMessage</item>
+        <item name="textAppearanceErrorReason">@style/BaseAppTheme.Text.ErrorReason</item>
+        <item name="android:editTextStyle">@style/BaseAppTheme.EditText</item>
         <item name="android:windowBackground">@color/windowBackground</item>
-        <item name="android:textAppearanceListItemSmall">@style/AppTheme.Text.ListItem.Small</item>
-        <item name="android:textAppearanceListItem">@style/AppTheme.Text.ListItem</item>
-        <item name="textAppearanceListItemSecondary">@style/AppTheme.Text.ListItem.Secondary</item>
-        <item name="android:buttonStyle">@style/AppTheme.Button</item>
+        <item name="android:textAppearanceListItemSmall">@style/BaseAppTheme.Text.ListItem.Small</item>
+        <item name="android:textAppearanceListItem">@style/BaseAppTheme.Text.ListItem</item>
+        <item name="textAppearanceListItemSecondary">@style/BaseAppTheme.Text.ListItem.Secondary</item>
+        <item name="android:buttonStyle">@style/BaseAppTheme.Button</item>
         <item name="android:colorBackground">@color/white</item>
         <item name="dividerHorizontal">@color/dividerColor</item>
         <item name="android:listDivider">@color/dividerColor</item>
     </style>
 
-    <style name="AppTheme.Text" parent="TextAppearance.AppCompat">
+    <style name="AppTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/toolbarHeight</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:titleTextAppearance">@style/BaseAppTheme.Text.ToolBarTitle</item>
+    </style>
+
+    <style name="BaseAppTheme.Text" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/textSize</item>
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
-    <style name="AppTheme.Text.Small" parent="TextAppearance.AppCompat">
+    <style name="BaseAppTheme.Text.Small" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/textSizeSmall</item>
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
-    <style name="AppTheme.Text.Large" parent="TextAppearance.AppCompat">
+    <style name="BaseAppTheme.Text.Large" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/textSizeBig</item>
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
-    <style name="AppTheme.Text.ErrorMessage" parent="AppTheme.Text.Large">
-        <item name="android:fontFamily">@font/roboto_bold</item>
-    </style>
-
-    <style name="AppTheme.Text.ErrorReason" parent="AppTheme.Text">
-        <item name="android:fontFamily">@font/roboto</item>
-    </style>
-
-    <style name="AppTheme.Button" parent="TextAppearance.AppCompat.Button">
-        <item name="android:background">@drawable/background_action_button</item>
-        <item name="android:textAppearance">@style/AppTheme.Text</item>
-        <item name="android:textColor">@color/green</item>
-        <item name="android:padding">@dimen/parent_padding</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="AppTheme.EditText" parent="TextAppearance.AppCompat">
+    <style name="BaseAppTheme.Text.ToolBarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:fontFamily">@font/quicksand_bold</item>
         <item name="android:textSize">@dimen/textSizeBig</item>
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
-    <style name="AppTheme.Text.ListItem" parent="TextAppearance.AppCompat">
+    <style name="BaseAppTheme.Text.ErrorMessage" parent="BaseAppTheme.Text.Large">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="BaseAppTheme.Text.ErrorReason" parent="BaseAppTheme.Text">
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="BaseAppTheme.Button" parent="TextAppearance.AppCompat.Button">
+        <item name="android:background">@drawable/background_action_button</item>
+        <item name="android:textAppearance">@style/BaseAppTheme.Text</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:padding">@dimen/parent_padding</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="BaseAppTheme.EditText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/quicksand_bold</item>
+        <item name="android:textSize">@dimen/textSizeBig</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    <style name="BaseAppTheme.Text.ListItem" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/textSize</item>
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
-    <style name="AppTheme.Text.ListItem.Secondary" parent="AppTheme.Text.ListItem">
+    <style name="BaseAppTheme.Text.ListItem.Secondary" parent="BaseAppTheme.Text.ListItem">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/textSizeSmall</item>
         <item name="android:textColor">@color/textColorSecondary</item>
     </style>
 
-    <style name="AppTheme.Text.ListItem.Small" parent="AppTheme.Text.ListItem">
+    <style name="BaseAppTheme.Text.ListItem.Small" parent="BaseAppTheme.Text.ListItem">
         <item name="android:textSize">@dimen/textSizeSmall</item>
     </style>
 
-    <style name="AppTheme.ListItem.Avatar" parent="Widget.AppCompat.ImageButton">
+    <style name="BaseAppTheme.ListItem.Avatar" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_width">@dimen/list_item_avatar_size</item>
         <item name="android:layout_height">@dimen/list_item_avatar_size</item>
         <item name="android:clickable">false</item>

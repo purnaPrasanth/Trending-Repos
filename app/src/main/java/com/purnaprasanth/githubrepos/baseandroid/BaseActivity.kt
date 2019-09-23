@@ -45,9 +45,9 @@ abstract class BaseActivity<BINDING : ViewDataBinding>(@LayoutRes val layoutId: 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidInjection.inject(this)
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
+        AndroidInjection.inject(this)
         initUI()
     }
 

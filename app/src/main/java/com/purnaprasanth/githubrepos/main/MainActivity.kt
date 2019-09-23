@@ -28,6 +28,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         binding.trendingRepoList.layoutManager = LinearLayoutManager(this)
         binding.pullToRefresh.setOnRefreshListener(this)
         binding.errorView.retryListener = this
+        binding.toolbar.toolbarTitle.text = getString(R.string.trending)
         trendingRepoViewModel.trendingReposViewState.observe(this, Observer {
             when (it) {
                 is ErrorViewState -> {
@@ -42,7 +43,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                     binding.errorView.visibility = GONE
                 }
                 is LoadingViewState -> {
-                    binding.pullToRefresh.isRefreshing = false
+                    binding.pullToRefresh.isRefreshing = true
                     binding.pullToRefresh.visibility = VISIBLE
                     binding.errorView.visibility = GONE
                 }

@@ -4,4 +4,5 @@
     <string name="retry">retry</string>
     <string name="an_alient_must_be_blocking_the_signal">An Alient Must be blocking the signal</string>
     <string name="something_went_wrong">Something Went Wrong...</string>
+    <string name="trending">Trending</string>
 </resources>

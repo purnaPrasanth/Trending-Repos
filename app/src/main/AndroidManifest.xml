@@ -13,7 +13,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:name=".GithubTrendingRepoApplication"
-            android:theme="@style/AppTheme">
+            android:theme="@style/BaseAppTheme">
 
         <activity android:name=".main.MainActivity">
             <intent-filter>

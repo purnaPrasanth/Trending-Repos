@@ -74,6 +74,8 @@
 
     <dimen name="dividerHeight">@dimen/p2</dimen>
 
+    <dimen name="toolbarHeight">@dimen/d56</dimen>
+
     <dimen name="textSizeTiny">@dimen/f10</dimen>
     <dimen name="textSizeSmall">@dimen/f14</dimen>
     <dimen name="textSize">@dimen/f16</dimen>
