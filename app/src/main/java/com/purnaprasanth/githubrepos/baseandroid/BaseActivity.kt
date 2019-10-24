@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.purnaprasanth.githubrepos.base.AppDispatchers
-import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -38,7 +39,11 @@ abstract class BaseActivity<BINDING : ViewDataBinding>(@LayoutRes val layoutId: 
     lateinit var dispatchers: AppDispatchers
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    protected val viewModelProvider: ViewModelProvider by lazy {
+        ViewModelProviders.of(this, viewModelFactory)
+    }
 
     override val coroutineContext: CoroutineContext
         get() = dispatchers.mainDispatcher + parentJob
@@ -47,7 +52,6 @@ abstract class BaseActivity<BINDING : ViewDataBinding>(@LayoutRes val layoutId: 
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
-        AndroidInjection.inject(this)
         initUI()
     }
 

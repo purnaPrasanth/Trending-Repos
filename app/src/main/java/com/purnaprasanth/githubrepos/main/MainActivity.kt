@@ -1,5 +1,6 @@
 package com.purnaprasanth.githubrepos.main
 
+import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
@@ -14,11 +15,12 @@ import com.purnaprasanth.githubrepos.databinding.ActivityMainBinding
 import com.purnaprasanth.githubrepos.view.RetryListener
 import javax.inject.Inject
 
-class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), SwipeRefreshLayout.OnRefreshListener,
-    RetryListener {
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main),
+    SwipeRefreshLayout.OnRefreshListener, RetryListener {
 
-    @Inject
-    lateinit var trendingRepoViewModel: TrendingRepoViewModel
+    private val trendingRepoViewModel: TrendingRepoViewModel by lazy {
+        viewModelProvider.get(TrendingRepoViewModel::class.java)
+    }
 
     @Inject
     lateinit var trendingRepoRvAdapter: TrendingRepoRvAdapter
@@ -29,6 +31,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         binding.pullToRefresh.setOnRefreshListener(this)
         binding.errorView.retryListener = this
         binding.toolbar.toolbarTitle.text = getString(R.string.trending)
+        Log.d("MainActivity", trendingRepoViewModel.toString())
         trendingRepoViewModel.trendingReposViewState.observe(this, Observer {
             when (it) {
                 is ErrorViewState -> {
